@@ -1,0 +1,14 @@
+{
+  "version": "2.0",
+  "envId": "your-env-id",
+  "framework": {
+    "name": "vue",
+    "runtime": "nodejs22"
+  },
+  "static": {
+    "root": "dist",
+    "index": "index.html",
+    "error": "index.html"
+  }
+}
+
