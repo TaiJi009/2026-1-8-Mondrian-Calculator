@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
-  base: '/',  // 根路径部署
+  base: '/test_1/',  // 根路径部署
   plugins: [vue()],
   build: {
     outDir: 'dist',
