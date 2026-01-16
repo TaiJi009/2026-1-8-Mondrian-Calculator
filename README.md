@@ -62,6 +62,57 @@ yarn preview
 pnpm preview
 ```
 
+## 📦 部署到 GitHub Pages（一键部署）
+
+### 前置准备
+
+1. **创建 GitHub 仓库**（如果还没有）
+   - 在 GitHub 上创建一个新仓库
+   - 将本地代码推送到仓库
+
+2. **启用 GitHub Pages**
+   - 进入仓库的 `Settings` → `Pages`
+   - 在 `Source` 中选择 `GitHub Actions`
+   - 保存设置
+
+### 一键部署
+
+项目已配置好 GitHub Actions 工作流，只需：
+
+1. **推送代码到 main 分支**
+   ```bash
+   git add .
+   git commit -m "准备部署到 GitHub Pages"
+   git push origin main
+   ```
+
+2. **自动部署**
+   - 推送代码后，GitHub Actions 会自动触发构建和部署
+   - 在仓库的 `Actions` 标签页可以查看部署进度
+   - 部署完成后，访问地址：`https://你的用户名.github.io/2026-1-8-Mondrian-Calculator/`
+
+3. **手动触发部署（可选）**
+   - 在 GitHub 仓库的 `Actions` 标签页
+   - 选择 `Deploy to GitHub Pages` 工作流
+   - 点击 `Run workflow` 按钮手动触发
+
+### 自定义仓库名
+
+如果仓库名不是 `2026-1-8-Mondrian-Calculator`，需要修改 `vite.config.js` 中的默认 base 路径：
+
+```javascript
+const base = process.env.VITE_BASE || (process.env.NODE_ENV === 'production' ? '/你的仓库名/' : '/')
+```
+
+或者直接使用环境变量，GitHub Actions 会自动根据仓库名设置。
+
+### 访问你的网站
+
+部署成功后，你的网站地址为：
+- `https://你的用户名.github.io/2026-1-8-Mondrian-Calculator/`
+
+> 💡 **提示**：首次部署可能需要几分钟时间，后续更新会更快。
+
 ## 📦 部署到腾讯云 CloudBase
 
 ### 1. 安装 CloudBase CLI
@@ -135,6 +186,9 @@ tcb hosting deploy dist
 ├── index.html                   # HTML 模板
 ├── package.json                 # 项目配置
 ├── vite.config.js               # Vite 配置
+├── .github/
+│   └── workflows/
+│       └── deploy.yml           # GitHub Actions 部署配置
 ├── cloudbase.json               # CloudBase 部署配置
 └── README.md                    # 项目说明
 ```
